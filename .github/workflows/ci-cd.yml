@@ -29,8 +29,7 @@ jobs:
         pip install -r requirements.txt  # Установите зависимости, если есть requirements.txt
         pip install pytest  # Устанавливаем pytest
 
-    - name: Check pytest version
-      run: pytest --version  # Проверяем, что pytest установлен
-
     - name: Run tests
-      run: pytest backend/tests  # Запуск всех тестов в директории backend/tests
+      env:
+        PYTHONPATH: ${{ github.workspace }}  # Добавляем корень проекта в PYTHONPATH
+      run: python -m pytest backend/tests  # Запуск тестов
